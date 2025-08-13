@@ -1,11 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prerana Kapase • Data Science & Machine Learning Portfolio</title>
+
+  <!-- SEO -->
+  <meta name="description" content="ATS-friendly portfolio for Prerana Kapase — Data Science & Machine Learning. Projects in House Price Prediction, Customer Churn, and Generative AI. Skills: Python, SQL, NumPy, Pandas, Scikit-learn, Matplotlib, Seaborn." />
+  <meta name="keywords" content="Data Science, Machine Learning, AI, Artificial Intelligence, Deep Learning, Python, SQL, NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, EDA, Predictive Modeling, Classification, Regression, Data Visualization, Analytics, Jupyter, Excel, Statistics, Linear Regression, Logistic Regression, Supervised Learning, Feature Engineering, Model Evaluation" />
+  <meta name="author" content="Prerana Kapase" />
+
+  <!-- Bootstrap (allowed via CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Internal CSS (ATS-friendly + modern aesthetic) -->
+  <style>
+    :root{
+      --bg:#0b0e14; --card:#121826; --muted:#9aa4b2; --text:#eef2f7; --brand:#5ac8fa; --accent:#8a7dff; --chip:#1b2336;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    [data-theme="light"]{
+      --bg:#f6f7fb; --card:#ffffff; --muted:#535c67; --text:#111827; --brand:#0ea5e9; --accent:#6d28d9; --chip:#eef2ff;
+      --shadow:0 10px 30px rgba(2,6,23,.08);
+    }
+    html,body{background:var(--bg); color:var(--text); scroll-behavior:smooth;}
+    .container-narrow{max-width:1000px}
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0)) , var(--card);
+      border:1px solid rgba(255,255,255,.06); border-radius:20px; box-shadow:var(--shadow);
+    }
+    .hero{
+      position:relative; overflow:hidden; border-radius:24px; padding:48px;
+      background:
+        radial-gradient(800px 400px at -10% -20%, rgba(90,200,250,.15), transparent 60%),
+        radial-gradient(700px 300px at 110% 0%, rgba(138,125,255,.12), transparent 60%),
+        var(--card);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .hero::after{
+      content:""; position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 200px at 50% -10%, rgba(90,200,250,.08), transparent 60%),
+        radial-gradient(600px 200px at 70% 120%, rgba(138,125,255,.08), transparent 60%);
+      filter: blur(20px); z-index:0;
+    }
+    .hero-content{position:relative; z-index:1}
+    .nav-link{color:var(--muted)}
+    .nav-link:hover, .nav-link.active{color:var(--text)}
+    .chip{
+      background:var(--chip); color:var(--text); border:1px solid rgba(255,255,255,.08);
+      padding:.45rem .7rem; border-radius:999px; display:inline-flex; align-items:center; gap:.5rem;
+      font-size:.9rem; margin:.25rem; white-space:nowrap;
+    }
+    .chip i{font-size:.9rem; opacity:.9}
+    .section-title{
+      font-weight:700; letter-spacing:.2px; margin-bottom:1rem;
+      background: linear-gradient(90deg, var(--text), var(--brand) 60%, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .card-modern{
+      background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:18px; transition:transform .2s ease, border-color .2s ease;
+    }
+    .card-modern:hover{ transform: translateY(-4px); border-color: rgba(90,200,250,.5);}
+    .btn-brand{ background:linear-gradient(90deg, var(--brand), var(--accent)); border:none; color:#fff }
+    .btn-brand:hover{ filter:brightness(.95); color:#fff }
+    .link-clean{ color:var(--brand); text-decoration:none }
+    .link-clean:hover{ text-decoration:underline }
+    .avatar{
+      width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.15);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), transparent);
+    }
+    .kbd{
+      padding:2px 6px; border-radius:6px; border:1px solid rgba(255,255,255,.15); background:rgba(255,255,255,.04); font-family:ui-monospace, Menlo, monospace;
+    }
+    /* Timeline */
+    .timeline{position:relative; padding-left:24px}
+    .timeline::before{content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(var(--brand), var(--accent))}
+    .tl-item{position:relative; margin-bottom:1rem}
+    .tl-item::before{content:""; position:absolute; left:-2px; top:.5rem; width:12px; height:12px; border-radius:50%; background:var(--brand); box-shadow:0 0 0 4px rgba(90,200,250,.15)}
+    /* Accessible focus */
+    :focus-visible{outline:3px solid var(--brand); outline-offset:2px}
+    /* Print / ATS */
+    @media print{
+      .no-print{display:none !important}
+      body{background:#fff; color:#000}
+      a{color:#000; text-decoration:underline}
+      .glass,.hero,.card-modern{box-shadow:none; border:1px solid #000}
+    }
+  </style>
+
+  <!-- JSON-LD (Recruiter-friendly) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Prerana Kapase",
+    "email":"mailto:preranakapase01@gmail.com",
+    "jobTitle":"Data Science & Machine Learning Intern",
+    "url":"https://preranakapase01-oss.github.io/portfolio",
+    "sameAs":[
+      "https://www.linkedin.com/in/prerana-kapase-255511350/",
+      "https://github.com/preranakapase01-oss",
+      "https://kapaseprerana03.pythonanywhere.com/",
+      "https://preranakapase02.pythonanywhere.com/",
+      "https://preranakapase01.pythonanywhere.com/"
+    ],
+    "knowsAbout":[
+      "Machine Learning","Artificial Intelligence","Data Science","Python","SQL","NumPy","Pandas","Matplotlib","Seaborn","Scikit-learn",
+      "EDA","Predictive Analytics","Linear Regression","Logistic Regression","Supervised Learning","Model Evaluation","Data Visualization"
+    ]
+  }
+  </script>
 </head>
-<body>
-<h1>Prerana's Portfolio5</h1>
-some line added
+<body data-theme="dark">
+
+  <!-- Sticky Top Bar -->
+  <nav class="navbar navbar-expand-lg sticky-top glass px-3 py-2">
+    <a class="navbar-brand fw-bold" href="#top" aria-label="Home">
+      <i class="bi bi-cpu me-2"></i>Prerana <span class="text-info">Kapase</span>
+    </a>
+    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-light no-print" id="themeBtn" aria-pressed="true" aria-label="Toggle theme">
+          <i class="bi bi-moon-stars me-1"></i><span>Dark</span>
+        </button>
+        <button class="btn btn-sm btn-brand no-print" onclick="window.print()" aria-label="Print / Save PDF">
+          <i class="bi bi-printer me-1"></i> Save PDF
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <main id="top" class="container container-narrow my-4">
+    <section class="hero mb-4">
+      <div class="row align-items-center hero-content">
+        <div class="col-md-8">
+          <h1 class="display-5 fw-bold">Data Science & Machine Learning Portfolio</h1>
+          <p class="lead mt-3">
+            Fresher with a strong Mathematics background, hands-on ML/AI projects, and a passion for
+            <span class="kbd">predictive modeling</span>, <span class="kbd">EDA</span>, and <span class="kbd">data-driven insights</span>.
+          </p>
+          <div class="d-flex flex-wrap mt-3">
+            <a class="chip link-clean" href="mailto:preranakapase01@gmail.com" target="_blank" rel="noopener"><i class="bi bi-envelope"></i> preranakapase01@gmail.com</a>
+            <a class="chip link-clean" href="tel:+919359722849"><i class="bi bi-telephone"></i> +91 93597 22849</a>
+            <a class="chip link-clean" href="https://www.linkedin.com/in/prerana-kapase-255511350/" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i> LinkedIn</a>
+            <a class="chip link-clean" href="https://github.com/preranakapase01-oss" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a>
+          </div>
+        </div>
+        <div class="col-md-4 text-center mt-4 mt-md-0">
+          <!-- Profile Photo Placeholder -->
+          <img src="prerana.jpg" alt="Profile photo placeholder" class="avatar mb-2" />
+          <div class="text-muted small">Add your photo: replace <code>your-profile-photo.jpg</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="glass p-4 p-md-5 mb-4">
+      <h2 class="section-title h3">About Me</h2>
+      <p class="mb-0">
+        I am a <strong>Data Science & Machine Learning</strong> enthusiast with a <strong>Mathematics</strong> foundation.
+        Skilled in <strong>Python</strong>, <strong>SQL</strong>, and the ML stack (<strong>NumPy</strong>, <strong>Pandas</strong>, <strong>Matplotlib</strong>, <strong>Seaborn</strong>, <strong>Scikit-learn</strong>).
+        I focus on <em>clean data pipelines</em>, <em>feature engineering</em>, and <em>model evaluation</em> to ship user-friendly, efficient solutions.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="glass p-4 p-md-5 mb-4">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2 class="section-title h3 mb-0">Skills • Tools • Tech</h2>
+        <input id="skillSearch" class="form-control form-control-sm w-auto" placeholder="Filter skills…" aria-label="Filter skills" />
+      </div>
+      <div id="skillWrap" class="d-flex flex-wrap">
+        <!-- Languages -->
+        <span class="chip" data-skill="python"><i class="bi bi-code-slash"></i> Python</span>
+        <span class="chip" data-skill="sql mysql"><i class="bi bi-database"></i> SQL (MySQL)</span>
+
+        <!-- Libraries -->
+        <span class="chip" data-skill="numpy"><i class="bi bi-cpu"></i> NumPy</span>
+        <span class="chip" data-skill="pandas"><i class="bi bi-table"></i> Pandas</span>
+        <span class="chip" data-skill="matplotlib"><i class="bi bi-bar-chart"></i> Matplotlib</span>
+        <span class="chip" data-skill="seaborn"><i class="bi bi-graph-up"></i> Seaborn</span>
+        <span class="chip" data-skill="scikit-learn sklearn machine learning"><i class="bi bi-diagram-3"></i> Scikit-learn</span>
+
+        <!-- Platforms -->
+        <span class="chip" data-skill="jupyter"><i class="bi bi-journal-code"></i> Jupyter Notebook</span>
+        <span class="chip" data-skill="excel"><i class="bi bi-file-earmark-spreadsheet"></i> Excel</span>
+
+        <!-- DS/ML Keywords (ATS) -->
+        <span class="chip" data-skill="eda exploratory data analysis"><i class="bi bi-search"></i> EDA</span>
+        <span class="chip" data-skill="feature engineering"><i class="bi bi-sliders2"></i> Feature Engineering</span>
+        <span class="chip" data-skill="model selection evaluation metrics"><i class="bi bi-bullseye"></i> Model Evaluation</span>
+        <span class="chip" data-skill="regression linear regression"><i class="bi bi-arrow-right-square"></i> Linear Regression</span>
+        <span class="chip" data-skill="classification logistic regression"><i class="bi bi-diagram-3"></i> Logistic Regression</span>
+        <span class="chip" data-skill="supervised learning"><i class="bi bi-magic"></i> Supervised Learning</span>
+        <span class="chip" data-skill="predictive analytics"><i class="bi bi-activity"></i> Predictive Analytics</span>
+        <span class="chip" data-skill="data visualization"><i class="bi bi-palette"></i> Data Visualization</span>
+        <span class="chip" data-skill="statistics probability"><i class="bi bi-percent"></i> Statistics</span>
+
+        <!-- Soft Skills -->
+        <span class="chip" data-skill="teamwork"><i class="bi bi-people"></i> Teamwork</span>
+        <span class="chip" data-skill="problem solving"><i class="bi bi-lightbulb"></i> Problem-Solving</span>
+        <span class="chip" data-skill="communication"><i class="bi bi-chat-text"></i> Communication</span>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="glass p-4 p-md-5 mb-4">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="section-title h3 mb-0">Projects</h2>
+        <span class="text-muted small">ML • AI • Analytics</span>
+      </div>
+
+      <div class="row g-3 mt-1">
+        <!-- House Price Prediction -->
+        <div class="col-md-6">
+          <article class="card-modern p-4 h-100">
+            <div class="d-flex align-items-start justify-content-between">
+              <h3 class="h5 mb-2">House Price Prediction (Regression)</h3>
+              <span class="badge rounded-pill text-bg-info">Scikit-learn</span>
+            </div>
+            <p class="mb-2">
+              Built a pipeline to predict house prices using features like area (sq.ft), rooms, and age.
+              <strong>Linear Regression</strong> baseline with data preprocessing, feature scaling, and evaluation (MAE/R²).
+            </p>
+            <ul class="mb-3 small">
+              <li>Data Cleaning • Feature Engineering • Train/Test Split</li>
+              <li>Visualization: <em>Matplotlib, Seaborn</em></li>
+              <li>Deploy preview:</li>
+            </ul>
+            <div class="d-flex gap-2">
+              <a class="btn btn-sm btn-brand" href="https://kapaseprerana03.pythonanywhere.com/" target="_blank" rel="noopener">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Live App
+              </a>
+              <a class="btn btn-sm btn-outline-light" href="https://github.com/preranakapase01-oss" target="_blank" rel="noopener">
+                <i class="bi bi-github me-1"></i> View Code
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Customer Churn -->
+        <div class="col-md-6">
+          <article class="card-modern p-4 h-100">
+            <div class="d-flex align-items-start justify-content-between">
+              <h3 class="h5 mb-2">Customer Churn Analysis (Classification)</h3>
+              <span class="badge rounded-pill text-bg-primary">Logistic Regression</span>
+            </div>
+            <p class="mb-2">
+              Predicted churn using historical customer data (age, charges, internet service, payment, contracts).
+              Focus on <strong>class imbalance</strong>, threshold tuning, and <strong>F1/ROC-AUC</strong>.
+            </p>
+            <ul class="mb-3 small">
+              <li>EDA • One-hot Encoding • Scaling • Model Evaluation</li>
+              <li>Retention insights for proactive actions</li>
+            </ul>
+            <div class="d-flex gap-2">
+              <a class="btn btn-sm btn-brand" href="https://preranakapase02.pythonanywhere.com/" target="_blank" rel="noopener">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Live App
+              </a>
+              <a class="btn btn-sm btn-outline-light" href="https://github.com/preranakapase01-oss" target="_blank" rel="noopener">
+                <i class="bi bi-github me-1"></i> View Code
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Generative AI: Recipe Roadmap -->
+        <div class="col-md-6">
+          <article class="card-modern p-4 h-100">
+            <div class="d-flex align-items-start justify-content-between">
+              <h3 class="h5 mb-2">Recipe Roadmap (Generative AI)</h3>
+              <span class="badge rounded-pill text-bg-warning text-dark">Generative AI</span>
+            </div>
+            <p class="mb-2">
+              AI system that analyzes inputs and generates personalized roadmaps with
+              visualizations (<strong>Matplotlib</strong>, <strong>Plotly</strong>). Demonstrates prompt design and UI integration.
+            </p>
+            <ul class="mb-3 small">
+              <li>Prompting • Data Viz • Insight Communication</li>
+              <li>End-to-end UX with interactivity</li>
+            </ul>
+            <div class="d-flex gap-2">
+              <a class="btn btn-sm btn-brand" href="https://preranakapase01.pythonanywhere.com/" target="_blank" rel="noopener">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Live App
+              </a>
+              <a class="btn btn-sm btn-outline-light" href="https://github.com/preranakapase01-oss" target="_blank" rel="noopener">
+                <i class="bi bi-github me-1"></i> View Code
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="glass p-4 p-md-5 mb-4">
+      <h2 class="section-title h3">Experience</h2>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="card-modern p-3">
+            <div class="d-flex justify-content-between">
+              <strong>Data Science Intern</strong>
+              <span class="text-muted">Mar 2025 – Aug 2025</span>
+            </div>
+            <div class="d-flex justify-content-between small">
+              <span>Adhyayan IT Training & Placement</span>
+              <span class="text-muted">Remote/On-site</span>
+            </div>
+            <ul class="mt-2 mb-0 small">
+              <li>Data cleaning, <strong>EDA</strong>, and <strong>machine learning</strong> model building with <em>Python</em> & <em>Scikit-learn</em>.</li>
+              <li>Visualization dashboards with <em>Matplotlib</em>/<em>Seaborn</em> for actionable insights.</li>
+              <li>Collaborated on <strong>predictive analytics</strong> workflows and performance reporting.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ <!-- Education -->
+<section id="education" class="glass p-4 p-md-5 mb-4">
+  <h2 class="section-title h3">Education</h2>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="card-modern p-3 h-100">
+        <strong>M.Sc. Mathematics</strong>
+        <div class="text-muted small">
+          <span class="edu-college">Tuljaram Chaturchand College, Baramati (SPPU)</span> • 2022–2024
+        </div>
+        <div class="small">Percentage: 64.16%</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-modern p-3 h-100">
+        <strong>B.Sc. Mathematics</strong>
+        <div class="text-muted small">
+          <span class="edu-college">Vidya Pratishthan’s ASC College, Baramati (SPPU)</span> • 2019–2022
+        </div>
+        <div class="small">Percentage: 67.64%</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-modern p-3 h-100">
+        <strong>10th / SSC</strong>
+        <div class="text-muted small">
+          <span class="edu-college">Janta Vidya Mandir, Murud (Latur)</span> • 2017
+        </div>
+        <div class="small">Percentage: 77.60%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Hidden ATS-friendly plain text (optional toggle) -->
+    <details class="glass p-4 mb-5 no-print">
+      <summary class="fw-semibold">Plain-Text (ATS) Snapshot</summary>
+      <pre class="mt-3" style="white-space:pre-wrap">
+PRERANA KAPASE | Data Science & Machine Learning
+Email: preranakapase01@gmail.com | Phone: +91 9359722849
+LinkedIn: linkedin.com/in/prerana-kapase-255511350 | GitHub: github.com/preranakapase01-oss
+
+SUMMARY: Fresher in Data Science & ML with Mathematics background. Skilled in Python, SQL, NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn. Focus on EDA, feature engineering, regression/classification, model evaluation.
+
+SKILLS: Python, SQL (MySQL), NumPy, Pandas, Matplotlib, Seaborn, Scikit-learn, Jupyter, Excel, EDA, Linear Regression, Logistic Regression, Supervised Learning, Predictive Analytics, Data Visualization, Statistics. Soft skills: Teamwork, Problem-Solving, Communication.
+
+PROJECTS:
+- House Price Prediction: Linear Regression, preprocessing, evaluation (MAE/R²). Live: kapaseprerana03.pythonanywhere.com
+- Customer Churn Analysis: Logistic Regression, class imbalance handling, ROC-AUC/F1. Live: preranakapase02.pythonanywhere.com
+- Recipe Roadmap (Generative AI): Prompting, Matplotlib/Plotly visualizations. Live: preranakapase01.pythonanywhere.com
+
+EXPERIENCE: Data Science Intern — Adhyayan IT Training & Placement (Mar 2025 – Aug 2025)
+- Data cleaning, EDA, ML modeling with Python/Scikit-learn; visualization with Matplotlib/Seaborn.
+
+EDUCATION:
+- M.Sc. Mathematics — Tuljaram Chaturchand College (SPPU), 2022–2024, 64.16%
+- B.Sc. Mathematics — Vidya Pratishthan’s ASC College (SPPU), 2019–2022, 67.64%
+- 10th/SSC — Janta Vidya Mandir, 2017, 77.60%
+      </pre>
+    </details>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted pb-5">
+      <div class="small">
+        © <span id="year"></span> Prerana Kapase • Built with <span aria-label="love">❤️</span> for ML/AI
+      </div>
+    </footer>
+  </main>
+
+  <!-- Internal JS -->
+  <script>
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    const themeSpan = themeBtn?.querySelector('span');
+    const setTheme = (mode) => {
+      document.body.setAttribute('data-theme', mode);
+      if(themeSpan){ themeSpan.textContent = mode === 'dark' ? 'Dark' : 'Light'; }
+      localStorage.setItem('pk-theme', mode);
+      themeBtn.setAttribute('aria-pressed', mode === 'dark');
+      themeBtn.innerHTML = (mode === 'dark' ? '<i class="bi bi-moon-stars me-1"></i>' : '<i class="bi bi-brightness-high me-1"></i>') + themeSpan.outerHTML;
+    };
+    const saved = localStorage.getItem('pk-theme') || 'dark';
+    setTheme(saved);
+    themeBtn?.addEventListener('click', () => setTheme(document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Skill filter
+    const input = document.getElementById('skillSearch');
+    input?.addEventListener('input', (e)=>{
+      const q = e.target.value.toLowerCase().trim();
+      document.querySelectorAll('#skillWrap .chip').forEach(ch=>{
+        const hit = ch.dataset.skill?.toLowerCase().includes(q) || ch.textContent.toLowerCase().includes(q);
+        ch.style.display = hit ? 'inline-flex' : 'none';
+      });
+    });
+
+    // Ensure external links open safely
+    document.querySelectorAll('a[target="_blank"]').forEach(a=>{
+      a.setAttribute('rel','noopener');
+    });
+  </script>
+
+  <!-- Bootstrap JS (via CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
